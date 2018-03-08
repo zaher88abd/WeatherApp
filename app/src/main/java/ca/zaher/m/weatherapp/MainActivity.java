@@ -86,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
         TextView temp = findViewById(R.id.tvCityName);
         temp.setText(weather.name);
         temp = findViewById(R.id.tvTemp);
-        String output = String.format("%2.0fC", weather.main.temp);
+        String output = String.format("%2.0f\u2103", weather.main.temp);
         temp.setText(output);
         temp = findViewById(R.id.tvMinMax);
-        output = String.format("Max.%-2.0fC  Min.%-2.0fC", weather.main.tempMin, weather.main.tempMax);
+        output = String.format("Max.%-2.0f\u2103  Min.%-2.0f\u2103", weather.main.tempMin, weather.main.tempMax);
         temp.setText(output);
         temp = findViewById(R.id.tvMainWeather);
         temp.setText(weather.weather.get(0).main);

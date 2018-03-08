@@ -57,7 +57,7 @@
             android:layout_marginTop="@dimen/top_margin"
             android:gravity="center_horizontal"
             android:textColor="@color/colorBlack"
-            android:textSize="25sp"
+            android:textSize="35sp"
             android:textStyle="bold" />
 
         <TextView
