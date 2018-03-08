@@ -3,10 +3,10 @@ package weather;
 public class SysEntity {
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("sunset")
-    public int sunset;
+    public double sunset;
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("sunrise")
-    public int sunrise;
+    public double sunrise;
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("country")
     public String country;
@@ -15,8 +15,8 @@ public class SysEntity {
     public double message;
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("id")
-    public int id;
+    public double id;
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("type")
-    public int type;
+    public double type;
 }

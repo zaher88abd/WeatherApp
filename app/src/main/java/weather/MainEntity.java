@@ -9,10 +9,10 @@ public class MainEntity {
     public double tempMin;
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("humidity")
-    public int humidity;
+    public double humidity;
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("pressure")
-    public int pressure;
+    public double pressure;
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("temp")
     public double temp;

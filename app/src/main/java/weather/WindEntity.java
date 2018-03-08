@@ -6,7 +6,7 @@ public class WindEntity {
     public double gust;
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("deg")
-    public int deg;
+    public double deg;
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("speed")
     public double speed;

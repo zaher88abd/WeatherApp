@@ -44,4 +44,7 @@ public class WeatherRoot {
     @com.google.gson.annotations.Expose
     @com.google.gson.annotations.SerializedName("coord")
     public CoordEntity coord;
+    @com.google.gson.annotations.Expose
+    @com.google.gson.annotations.SerializedName("message")
+    public CoordEntity message;
 }
