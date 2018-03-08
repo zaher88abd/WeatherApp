@@ -9,13 +9,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import okhttp3.OkHttpClient;
-import okhttp3.internal.http2.Http2;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getWeather(String cityName) {
+        if (cityName.isEmpty()){
+            Toast.makeText(this, "Enter the city name", Toast.LENGTH_SHORT).show();
+            return;
+        }
         InputMethodManager inputManager = (InputMethodManager) MainActivity.this.
                 getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         } else {
                             Log.d("TestWeatherApp", response.message());
-                            Toast.makeText(MainActivity.this, response.message(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, response.message() + " the city", Toast.LENGTH_LONG).show();
                         }
                         progressDialog.cancel();
                     }
