@@ -41,16 +41,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //Function to get the weather data of the city
     private void getWeather(String cityName) {
-        if (cityName.isEmpty()){
+        if (cityName.isEmpty()) {
             Toast.makeText(this, "Enter the city name", Toast.LENGTH_SHORT).show();
             return;
         }
+        //close the softkeyboard after get the city name
         InputMethodManager inputManager = (InputMethodManager) MainActivity.this.
                 getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(
                 this.getCurrentFocus().getWindowToken(),
                 InputMethodManager.HIDE_NOT_ALWAYS);
+
+        //show the progress dialog
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please, waite...");
         progressDialog.show();
@@ -58,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 .baseUrl("https://api.openweathermap.org/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        // call the API to get data from the API
+        // and convert the Json to WeatherRoot object
         retrofit.create(WeatherInterface.class).getWeather(cityName, getString(R.string.app_id), "metric")
                 .enqueue(new Callback<WeatherRoot>() {
                     @Override
@@ -65,23 +71,27 @@ public class MainActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             if (response.body() != null) {
                                 Log.d("TestWeatherApp", "Good");
+                                //Update the view to show weather
                                 updateUI(response.body());
                             }
                         } else {
                             Log.d("TestWeatherApp", response.message());
-                            Toast.makeText(MainActivity.this, response.message() + " the city", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, " City is " + response.message(), Toast.LENGTH_LONG).show();
                         }
+                        //close the progress dialog
                         progressDialog.cancel();
                     }
 
                     @Override
                     public void onFailure(Call<WeatherRoot> call, Throwable t) {
                         Log.d("TestWeatherApp", call.toString() + " " + t.getMessage());
+                        //close the progress dialog
                         progressDialog.cancel();
                     }
                 });
     }
 
+    // Read data and update the view
     private void updateUI(WeatherRoot weather) {
         TextView temp = findViewById(R.id.tvCityName);
         temp.setText(weather.name);
@@ -103,12 +113,14 @@ public class MainActivity extends AppCompatActivity {
         temp.setText(output);
     }
 
+    // function of the search to get the weather of the city
     public void getWeather(View view) {
         Log.d("TestWeatherApp", "start...");
         EditText etCity = findViewById(R.id.etCityName);
         getWeather(etCity.getText().toString());
     }
 
+    //Interface of the Weather API
     public interface WeatherInterface {
         @GET("/data/2.5/weather")
         Call<WeatherRoot> getWeather(@Query("q") String cityName, @Query("appid") String appId
